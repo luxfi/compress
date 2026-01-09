@@ -22,7 +22,7 @@ type ZstdCompressor struct {
 }
 
 // NewZstdCompressor creates a new Zstandard compressor
-func NewZstdCompressor(level zstd.Level, reg *metric.MetricsRegistry) (*ZstdCompressor, error) {
+func NewZstdCompressor(level zstd.EncoderLevel, reg *metric.MetricsRegistry) (*ZstdCompressor, error) {
 	encoder, err := zstd.NewWriter(nil, zstd.WithEncoderLevel(level))
 	if err != nil {
 		return nil, err
@@ -103,7 +103,7 @@ func (zc *ZstdCompressor) Decompress(input []byte) ([]byte, error) {
 }
 
 // CompressLevel compresses with a specific level
-func CompressLevel(input []byte, level zstd.Level) ([]byte, error) {
+func CompressLevel(input []byte, level zstd.EncoderLevel) ([]byte, error) {
 	encoder, err := zstd.NewWriter(nil, zstd.WithEncoderLevel(level))
 	if err != nil {
 		return nil, err
@@ -142,7 +142,7 @@ type StreamCompressor struct {
 }
 
 // NewStreamCompressor creates a new streaming compressor
-func NewStreamCompressor(level zstd.Level, reg *metric.MetricsRegistry) (*StreamCompressor, error) {
+func NewStreamCompressor(level zstd.EncoderLevel, reg *metric.MetricsRegistry) (*StreamCompressor, error) {
 	metrics, err := NewZstdCompressor(level, reg)
 	if err != nil {
 		return nil, err
