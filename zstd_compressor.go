@@ -10,13 +10,13 @@ import (
 	"github.com/klauspost/compress/zstd"
 )
 
-var _ Compressor = (*zstdCompressor)(nil)
+var _ Compressor = (*ZstdCompressor)(nil)
 
-func NewZstdCompressor(maxSize int64) (Compressor, error) {
+func NewZstdCompressor(maxSize int64) (*ZstdCompressor, error) {
 	return NewZstdCompressorWithLevel(maxSize, zstd.SpeedDefault)
 }
 
-func NewZstdCompressorWithLevel(maxSize int64, level zstd.EncoderLevel) (Compressor, error) {
+func NewZstdCompressorWithLevel(maxSize int64, level zstd.EncoderLevel) (*ZstdCompressor, error) {
 	if maxSize == math.MaxInt64 {
 		// "Decompress" creates "io.LimitReader" with max size + 1:
 		// if the max size + 1 overflows, "io.LimitReader" reads nothing
@@ -29,20 +29,21 @@ func NewZstdCompressorWithLevel(maxSize int64, level zstd.EncoderLevel) (Compres
 	if err != nil {
 		return nil, err
 	}
-	return &zstdCompressor{
+	return &ZstdCompressor{
 		maxSize: maxSize,
 		level:   level,
 		decoder: decoder,
 	}, nil
 }
 
-type zstdCompressor struct {
+// ZstdCompressor implements Compressor using zstd compression
+type ZstdCompressor struct {
 	maxSize int64
 	level   zstd.EncoderLevel
 	decoder *zstd.Decoder
 }
 
-func (z *zstdCompressor) Compress(msg []byte) ([]byte, error) {
+func (z *ZstdCompressor) Compress(msg []byte) ([]byte, error) {
 	if int64(len(msg)) > z.maxSize {
 		return nil, fmt.Errorf("%w: (%d) > (%d)", ErrMsgTooLarge, len(msg), z.maxSize)
 	}
@@ -53,7 +54,7 @@ func (z *zstdCompressor) Compress(msg []byte) ([]byte, error) {
 	return encoder.EncodeAll(msg, nil), nil
 }
 
-func (z *zstdCompressor) Decompress(msg []byte) ([]byte, error) {
+func (z *ZstdCompressor) Decompress(msg []byte) ([]byte, error) {
 	decompressed, err := z.decoder.DecodeAll(msg, nil)
 	if err != nil {
 		// If the decoder returns an error about size limit, wrap it with our error
