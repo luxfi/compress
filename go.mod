@@ -1,6 +1,6 @@
 module github.com/luxfi/compress
 
-go 1.26
+go 1.26.1
 
 require (
 	github.com/klauspost/compress v1.18.3
