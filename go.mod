@@ -1,6 +1,6 @@
 module github.com/luxfi/compress
 
-go 1.26.1
+go 1.26.3
 
 require (
 	github.com/klauspost/compress v1.18.4
@@ -14,7 +14,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/luxfi/crypto v1.17.38 // indirect
 	github.com/luxfi/ids v1.2.9 // indirect
-	github.com/luxfi/math v1.2.2 // indirect
+	github.com/luxfi/math v1.4.0 // indirect
 	github.com/luxfi/math/big v0.1.0 // indirect
 	github.com/luxfi/mock v0.1.0 // indirect
 	github.com/luxfi/sampler v1.0.0 // indirect
