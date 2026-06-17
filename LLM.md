@@ -1,4 +1,4 @@
-# LLM.md - Hanzo Compress
+# Hanzo Compress
 
 ## Overview
 Go module: github.com/luxfi/compress
