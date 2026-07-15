@@ -4,17 +4,18 @@ go 1.26.4
 
 require (
 	github.com/klauspost/compress v1.18.4
-	github.com/luxfi/constants v1.4.2
-	github.com/luxfi/utils v1.1.1
+	github.com/luxfi/constants v1.6.2
+	github.com/luxfi/utils v1.3.1
 	github.com/stretchr/testify v1.11.1
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/kr/text v0.2.0 // indirect
-	github.com/luxfi/crypto v1.19.0 // indirect
-	github.com/luxfi/ids v1.2.9 // indirect
-	github.com/luxfi/math v1.4.0 // indirect
+	github.com/luxfi/crypto v1.20.2 // indirect
+	github.com/luxfi/geth v1.20.1
+	github.com/luxfi/ids v1.3.2 // indirect
+	github.com/luxfi/math v1.5.1 // indirect
 	github.com/luxfi/math/big v0.1.0 // indirect
 	github.com/luxfi/mock v0.1.0 // indirect
 	github.com/luxfi/sampler v1.1.0 // indirect
