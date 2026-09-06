@@ -14,7 +14,7 @@ import (
 	_ "embed"
 
 	"github.com/luxfi/constants"
-	"github.com/luxfi/utils"
+	"github.com/luxfi/util"
 )
 
 const maxMessageSize = 2 * constants.MiB // Max message size. Can't import due to cycle.
